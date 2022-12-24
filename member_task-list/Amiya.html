@@ -33,10 +33,10 @@ axios.get(url)
             
             var div = document.getElementById('task_list')
             
-            for (var i=0;i<obj.list.length;i++){
+            for (var i=0;i<obj.data.list.length;i++){
                 var point = '&nbsp;&bull;&nbsp;'
-                var str = obj.list[i]['subject_name'] + '<br>' + point + obj.list[i].task_name + '<br>&nbsp;&bull;&nbsp;发布日期: ' + obj.list[i]['publish_time'] + '<br>&nbsp;&bull;&nbsp;截止日期: ' + obj.list[i].deadline + "<br><br>";
-                var test_url = obj.list[i]['resource_list'][0]['resource_preview_url'];
+                var str = obj.data.list[i]['subject_name'] + '<br>' + point + obj.data.list[i].task_name + '<br>&nbsp;&bull;&nbsp;发布日期: ' + obj.data.list[i]['publish_time'] + '<br>&nbsp;&bull;&nbsp;截止日期: ' + obj.data.list[i].deadline + "<br><br>";
+                var test_url = obj.data.list[i]['resource_list'][0]['resource_preview_url'];
 
                 var task = document.createElement("a");
                 task.href = test_url;
