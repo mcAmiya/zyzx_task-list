@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>你的作业完成了吗？</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" href="../favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+</head>
+
+
+
+<body>
+
+    <div class="container">
+        <h2>Amiyaの任务列表 <span class="badge badge-secondary">开发中</span></h2>
+        <br>
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#undone">未完成</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#done">已完成</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#like">我的收藏</a>
+            </li>
+            <!-- 返回主页 -->
+            <button type="button" class="btn btn-outline-primary"
+                onclick='location.href=("../index.html")'>返回主页</button>
+            <!-- 科目选择 下拉框 -->
+            <!-- <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">全部学科</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" data-toggle="tab" href="#">语文</a>
+                    <a class="dropdown-item" data-toggle="tab" href="#">数学</a>
+                    <a class="dropdown-item" data-toggle="tab" href="#">英语</a>
+                    <a class="dropdown-item" data-toggle="tab" href="#">物理</a>
+                    <a class="dropdown-item" data-toggle="tab" href="#">化学</a>
+                    <a class="dropdown-item" data-toggle="tab" href="#">政治</a>
+                    <a class="dropdown-item" data-toggle="tab" href="#">历史</a>
+                </div>
+            </li> -->
+        </ul>
+
+
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <!-- 未完成页面 -->
+            <div id="undone" class="container tab-pane active"><br>
+                <!-- 手风琴特效 -->
+                <div id="accordion">
+                    <!-- 语文 -->
+                    <div class="card">
+                        <div class="card-header">
+                            <a class="card-link" data-toggle="collapse" href="#Chinese">
+                                语文
+                            </a>
+                        </div>
+                        <!-- collapse show 手风琴默认打开 -->
+                        <div id="Chinese" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                <!-- <a class="list-group-item list-group-item-action" -->
+                                <!-- href="https://unitest.zy.com/pages/login/examLogin?examCode=jw8m04i31g&amp;memberId=415130E4-45ED-4034-84E8-7C701AC2239A">【英语】周末训练（2021越秀区期末）<br>&nbsp;•&nbsp;发布日期: -->
+                                <!-- 2022-12-24 10:05:11<br>&nbsp;•&nbsp;截止日期: 2022-12-26 00:00:00</a><br> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 数学 -->
+                    <div class="card">
+                        <div class="card-header">
+                            <a class="card-link" data-toggle="collapse" href="#Math">
+                                数学
+                            </a>
+                        </div>
+                        <div id="Math" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                <!-- <a class="list-group-item list-group-item-action"
+                                    href="https://unitest.zy.com/pages/login/examLogin?examCode=jw8m04i31g&amp;memberId=415130E4-45ED-4034-84E8-7C701AC2239A">【英语】周末训练（2021越秀区期末）<br>&nbsp;•&nbsp;发布日期:
+                                    2022-12-24 10:05:11<br>&nbsp;•&nbsp;截止日期: 2022-12-26 00:00:00<br><br></a> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 英语 -->
+                    <div class="card">
+                        <div class="card-header">
+                            <a class="card-link" data-toggle="collapse" href="#English">
+                                英语
+                            </a>
+                        </div>
+                        <div id="English" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                <!-- <a class="list-group-item list-group-item-action"
+                                    href="https://unitest.zy.com/pages/login/examLogin?examCode=jw8m04i31g&amp;memberId=415130E4-45ED-4034-84E8-7C701AC2239A">【英语】周末训练（2021越秀区期末）<br>&nbsp;•&nbsp;发布日期:
+                                    2022-12-24 10:05:11<br>&nbsp;•&nbsp;截止日期: 2022-12-26 00:00:00</a><br> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 物理 -->
+                    <div class="card">
+                        <div class="card-header">
+                            <a class="card-link" data-toggle="collapse" href="#Physics">
+                                物理
+                            </a>
+                        </div>
+                        <div id="Physics" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                <!-- <a class="list-group-item list-group-item-action"
+                                    href="https://unitest.zy.com/pages/login/examLogin?examCode=jw8m04i31g&amp;memberId=415130E4-45ED-4034-84E8-7C701AC2239A">【英语】周末训练（2021越秀区期末）<br>&nbsp;•&nbsp;发布日期:
+                                    2022-12-24 10:05:11<br>&nbsp;•&nbsp;截止日期: 2022-12-26 00:00:00</a><br> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 化学 -->
+                    <div class="card">
+                        <div class="card-header">
+                            <a class="card-link" data-toggle="collapse" href="#Chemistry">
+                                化学
+                            </a>
+                        </div>
+                        <div id="Chemistry" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                <!-- <a class="list-group-item list-group-item-action"
+                                    href="https://unitest.zy.com/pages/login/examLogin?examCode=jw8m04i31g&amp;memberId=415130E4-45ED-4034-84E8-7C701AC2239A">【英语】周末训练（2021越秀区期末）<br>&nbsp;•&nbsp;发布日期:
+                                    2022-12-24 10:05:11<br>&nbsp;•&nbsp;截止日期: 2022-12-26 00:00:00</a><br> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 政治 -->
+                    <div class="card">
+                        <div class="card-header">
+                            <a class="card-link" data-toggle="collapse" href="#Politics">
+                                政治
+                            </a>
+                        </div>
+                        <div id="Politics" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                <!-- <a class="list-group-item list-group-item-action"
+                                    href="https://unitest.zy.com/pages/login/examLogin?examCode=jw8m04i31g&amp;memberId=415130E4-45ED-4034-84E8-7C701AC2239A">【英语】周末训练（2021越秀区期末）<br>&nbsp;•&nbsp;发布日期:
+                                    2022-12-24 10:05:11<br>&nbsp;•&nbsp;截止日期: 2022-12-26 00:00:00</a><br> -->
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 历史 -->
+                    <div class="card">
+                        <div class="card-header">
+                            <a class="card-link" data-toggle="collapse" href="#history">
+                                历史
+                            </a>
+                        </div>
+                        <div id="history" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                <!-- <a class="list-group-item list-group-item-action"
+                                    href="https://unitest.zy.com/pages/login/examLogin?examCode=jw8m04i31g&amp;memberId=415130E4-45ED-4034-84E8-7C701AC2239A">【英语】周末训练（2021越秀区期末）<br>&nbsp;•&nbsp;发布日期:
+                                    2022-12-24 10:05:11<br>&nbsp;•&nbsp;截止日期: 2022-12-26 00:00:00</a><br> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="done" class="container tab-pane fade"><br>
+                <h3>正在制作中……</h3>
+                <p>别急 该有的都会有的</p>
+            </div>
+            <div id="like" class="container tab-pane fade"><br>
+                <h3>正在制作中……</h3>
+                <p>别急 该有的都会有的</p>
+            </div>
+        </div>
+        <!-- 页数选择 -->
+        <ul class="pagination justify-content-center" style="margin:20px 0">
+            <li class="page-item disabled"><a class="page-link" href="#">首页</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">尾页</a></li>
+        </ul>
+    </div>
+
+</body>
+
+<script>
+    var data = '{"code":0,"msg":"请求成功","data":{"total":10,"pages":1,"page_index":1,"page_size":10,"list":[{"task_id":"o1gl0u1cjoeQJ3ODkYQA18Kr9qdYFLYx","task_name":"【英语】周末训练（2021越秀区期末）","remarks":"","res_type_code":"99","res_type_name":"答题卡","exercise_type":null,"exercise_type_name":null,"publish_time":"2022-12-24 10:05:11","deadline":"2022-12-26 00:00:00","finish_time":null,"resource_ids":"o1gl0svoijE-GTC9I46S_8O8n9oq3Heh","resource_type":"2","exam_code":"jw8m04i31g","subject_code":"QRZ_9","subject_name":"英语","like":false,"is_new":false,"resource_list":[{"resource_id":"jw8m04i31g","resource_name":"【英语】周末训练（2021越秀区期末）","resource_preview_url":"https://unitest.zy.com/pages/login/examLogin?examCode=jw8m04i31g&memberId=415130E4-45ED-4034-84E8-7C701AC2239A","attachment_url":null,"position":null,"view_seconds":0}],"attachment_list":[{"resource_id":"o1gl1r4sfd706O6PEHQcf8iYxi8ygVAt","resource_name":"21-22越秀区九上英语期末卷.pdf","resource_preview_url":"https://ow365.cn/?i=9945&draw=1&furl=http://officeweb.zy.com/zy-office-web/jyy_prd/office_view/jyy/20221224/21-22越秀区九上英语期末卷_183405_302.pdf","attachment_url":null,"position":null,"view_seconds":0}],"review_type":1,"review_status":null},{"task_id":"o1gl0rc8d42OdqqAqLAP1bZiG5bg3CdH","task_name":"12月24日物理作业2","remarks":"","res_type_code":"13","res_type_name":"练习","exercise_type":4,"exercise_type_name":"作业","publish_time":"2022-12-24 09:18:49","deadline":null,"finish_time":null,"resource_ids":"o1gl0r8muce2u-OJI34ZMb0LbATs8Uqj","resource_type":"2","exam_code":"aamkh1geo2","subject_code":"QRZ_2","subject_name":"物理","like":false,"is_new":false,"resource_list":[{"resource_id":"aamkh1geo2","resource_name":"12月24日物理作业2","resource_preview_url":"https://unitest.zy.com/pages/login/examLogin?examCode=aamkh1geo2&memberId=415130E4-45ED-4034-84E8-7C701AC2239A","attachment_url":null,"position":null,"view_seconds":0}],"attachment_list":null,"review_type":1,"review_status":null},{"task_id":"o1gk9q4jrsTcxJXRGkzw_8-qlc7BTgdP","task_name":"历史49-51课时第二次默写（要将正确答案再抄正一次）","remarks":"","res_type_code":"99","res_type_name":"答题卡","exercise_type":null,"exercise_type_name":null,"publish_time":"2022-12-24 07:34:00","deadline":null,"finish_time":null,"resource_ids":"o1gjb7o2r89TU-gqi3kImaY8MsSsMYJ0","resource_type":"2","exam_code":"2yd8x9u4s3","subject_code":"QRZ_11","subject_name":"历史","like":false,"is_new":false,"resource_list":[{"resource_id":"2yd8x9u4s3","resource_name":"历史49-51课时第二次默写（要将正确答案再抄正一次）","resource_preview_url":"https://unitest.zy.com/pages/login/examLogin?examCode=2yd8x9u4s3&memberId=415130E4-45ED-4034-84E8-7C701AC2239A","attachment_url":null,"position":null,"view_seconds":0}],"attachment_list":[{"resource_id":"o1gjb7o7149HPuD--MQCA8oATgmtf2di","resource_name":"49-51课时默写.docx","resource_preview_url":"https://ow365.cn/?i=9945&draw=1&furl=http://officeweb.zy.com/zy-office-web/jyy_prd/office_view/jyy/20221203/49-51课时默写_133608_473.docx","attachment_url":null,"position":null,"view_seconds":0}],"review_type":1,"review_status":null},{"task_id":"o1gkvjgvh3cZB6V4LB47jbILyt7LQk9H","task_name":"选择题强化训练50题（选做）","remarks":"","res_type_code":"13","res_type_name":"练习","exercise_type":4,"exercise_type_name":"作业","publish_time":"2022-12-23 21:41:24","deadline":null,"finish_time":null,"resource_ids":"o1gkvf8jnm3Cen33EbQ25bjTpxBmv8Ws","resource_type":"2","exam_code":"9e805q7t5v","subject_code":"QRZ_4","subject_name":"政治","like":false,"is_new":false,"resource_list":[{"resource_id":"9e805q7t5v","resource_name":"选择题强化训练50题（选做）","resource_preview_url":"https://unitest.zy.com/pages/login/examLogin?examCode=9e805q7t5v&memberId=415130E4-45ED-4034-84E8-7C701AC2239A","attachment_url":null,"position":null,"view_seconds":0}],"attachment_list":null,"review_type":1,"review_status":null},{"task_id":"o1gkvggutpcOyrZN_F4RI9B2DmZ8Toul","task_name":"周末作业","remarks":"","res_type_code":"13","res_type_name":"练习","exercise_type":4,"exercise_type_name":"作业","publish_time":"2022-12-23 20:49:55","deadline":null,"finish_time":null,"resource_ids":"o1gkvfh0fh8skTb5G5QEIbk-ELY-WlDP","resource_type":"2","exam_code":"wh8iq2z541","subject_code":"QRZ_4","subject_name":"政治","like":false,"is_new":false,"resource_list":[{"resource_id":"wh8iq2z541","resource_name":"周末作业","resource_preview_url":"https://unitest.zy.com/pages/login/examLogin?examCode=wh8iq2z541&memberId=415130E4-45ED-4034-84E8-7C701AC2239A","attachment_url":null,"position":null,"view_seconds":0}],"attachment_list":null,"review_type":1,"review_status":null},{"task_id":"o1gkvaj2gv5ppjdznlQKwbabqYWKnT27","task_name":"广州市十一区 九年级第一学期期末英语试卷题型分类汇编（越秀区）（12.23）","remarks":"","res_type_code":"13","res_type_name":"练习","exercise_type":4,"exercise_type_name":"作业","publish_time":"2022-12-23 19:06:10","deadline":"2022-12-24 00:00:00","finish_time":null,"resource_ids":"o1gkvai3plaTTvXRP_4gHa4Yyx9-kff6","resource_type":"2","exam_code":"2g79lh8f8q","subject_code":"QRZ_9","subject_name":"英语","like":false,"is_new":false,"resource_list":[{"resource_id":"2g79lh8f8q","resource_name":"广州市十一区 九年级第一学期期末英语试卷题型分类汇编（越秀区）（12.23）","resource_preview_url":"https://unitest.zy.com/pages/login/examLogin?examCode=2g79lh8f8q&memberId=415130E4-45ED-4034-84E8-7C701AC2239A","attachment_url":null,"position":null,"view_seconds":0}],"attachment_list":null,"review_type":1,"review_status":null},{"task_id":"o1gkvaai3981CcE4bQO6_9HShoK63-Hf","task_name":"12月23日化学晚修作业---化学期末统考复习--选择题训练（四）答题卡（P7-P8）","remarks":"","res_type_code":"99","res_type_name":"答题卡","exercise_type":null,"exercise_type_name":null,"publish_time":"2022-12-23 19:01:15","deadline":"2022-12-23 23:30:00","finish_time":null,"resource_ids":"o1gkva603j2NJrVqjwkfJ9lwjIfOtvMX","resource_type":"2","exam_code":"h0i7r7p4sp","subject_code":"QRZ_7","subject_name":"化学","like":false,"is_new":false,"resource_list":[{"resource_id":"h0i7r7p4sp","resource_name":"12月23日化学晚修作业---化学期末统考复习--选择题训练（四）答题卡（P7-P8）","resource_preview_url":"https://unitest.zy.com/pages/login/examLogin?examCode=h0i7r7p4sp&memberId=415130E4-45ED-4034-84E8-7C701AC2239A","attachment_url":null,"position":null,"view_seconds":0}],"attachment_list":[],"review_type":1,"review_status":null},{"task_id":"o1gkv91hkm9rB9wLrIkv98KHBoQaKfB1","task_name":"【英语】� 每日一练（从句练习）（12.23）","remarks":"要学会判断从句类型哦","res_type_code":"13","res_type_name":"练习","exercise_type":4,"exercise_type_name":"作业","publish_time":"2022-12-23 18:39:08","deadline":"2022-12-24 00:00:00","finish_time":null,"resource_ids":"o1gkv8vs5neerYnkETk3y9WqNqYTQbJ3","resource_type":"2","exam_code":"l03vt0rkri","subject_code":"QRZ_9","subject_name":"英语","like":false,"is_new":false,"resource_list":[{"resource_id":"l03vt0rkri","resource_name":"【英语】� 每日一练（从句练习）（12.23）","resource_preview_url":"https://unitest.zy.com/pages/login/examLogin?examCode=l03vt0rkri&memberId=415130E4-45ED-4034-84E8-7C701AC2239A","attachment_url":null,"position":null,"view_seconds":0}],"attachment_list":null,"review_type":1,"review_status":null},{"task_id":"o1gkv861jodhrOdB_rk5y8_J0plZhbWC","task_name":"化学期末统考复习---化学式、化合价P12-14的1-22题答题卡","remarks":"","res_type_code":"99","res_type_name":"答题卡","exercise_type":null,"exercise_type_name":null,"publish_time":"2022-12-23 18:23:59","deadline":"2022-12-24 23:59:00","finish_time":null,"resource_ids":"o1gkl5rcnl2EQpe3mJQop9d6JiNCXnqT","resource_type":"2","exam_code":"6bq5j01j1w","subject_code":"QRZ_7","subject_name":"化学","like":false,"is_new":false,"resource_list":[{"resource_id":"6bq5j01j1w","resource_name":"化学期末统考复习---化学式、化合价P12-14的1-22题答题卡","resource_preview_url":"https://unitest.zy.com/pages/login/examLogin?examCode=6bq5j01j1w&memberId=415130E4-45ED-4034-84E8-7C701AC2239A","attachment_url":null,"position":null,"view_seconds":0}],"attachment_list":[],"review_type":1,"review_status":null},{"task_id":"o1gkv6vsh2dUdlxdPlQpobmSvj5LnU16","task_name":"12月23日物理作业","remarks":"","res_type_code":"13","res_type_name":"练习","exercise_type":4,"exercise_type_name":"作业","publish_time":"2022-12-23 18:03:11","deadline":null,"finish_time":null,"resource_ids":"o1gkv6rktq75RedjmzAtf9UJ4XDXHOpH","resource_type":"2","exam_code":"5mm7153ky7","subject_code":"QRZ_2","subject_name":"物理","like":false,"is_new":false,"resource_list":[{"resource_id":"5mm7153ky7","resource_name":"12月23日物理作业","resource_preview_url":"https://unitest.zy.com/pages/login/examLogin?examCode=5mm7153ky7&memberId=415130E4-45ED-4034-84E8-7C701AC2239A","attachment_url":null,"position":null,"view_seconds":0}],"attachment_list":null,"review_type":1,"review_status":null}]}}';
+    // var json_str = JSON.stringify(data);
+    var json = JSON.parse(data);
+    console.log(json);
+
+    for (var i = 0; i < json.data.list.length; i++) {
+        var point = '&nbsp;&bull;&nbsp;'
+        var str = point + json.data.list[i].task_name + '<br>&nbsp;&bull;&nbsp;发布日期: ' + json.data.list[i]['publish_time'] + '<br>&nbsp;&bull;&nbsp;截止日期: ' + json.data.list[i].deadline + "<br><br>";
+        var exam_url = json.data.list[i]['resource_list'][0]['resource_preview_url'];
+
+
+
+
+        var task = document.createElement("a");
+        task.className = "list-group-item list-group-item-action";
+        task.href = exam_url;
+        task.innerHTML = str;
+
+
+        if (json.data.list[i]['subject_name'] == '英语') {
+            var div = document.getElementById('English');
+            console.log(json.data.list[i]['subject_name']);
+            var card_body = div.getElementsByClassName('card-body');
+            card_body[0].appendChild(task);
+            
+            var brDiv = document.createElement('br');
+            card_body[0].appendChild(brDiv);
+        };
+
+
+
+
+    }
+
+</script>
+
+</html>
