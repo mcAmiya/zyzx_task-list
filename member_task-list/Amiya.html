@@ -49,61 +49,17 @@
     <!-- 主要函数 -->
     <script src="./js/main.js"></script>
     <!-- Vue.js 3 -->
-    <script type="importmap">
+    <!-- <script type="importmap">
         {
           "imports": {
             "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
           }
         }
-    </script>
+    </script> -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- <script src="https://cdn.staticfile.org/vue/3.2.36/vue.global.min.js"></script> -->
 
-    <script type="module">
-        import * as Vue from 'vue'
-
-        const app = {
-            data() {
-                return {
-                    // 定义用户信息
-                    User: {
-                        Name: 'Amiya',
-                        Token: '6ff9dd8c-dcbf-414f-8a02-6c693de20b7e'
-                    },
-                    subject: [
-                        ['语文(暂时全放在了语文)', 'Chinese'],
-                        ['数学', 'Math'],
-                        ['英语', 'English'],
-                        ['物理', 'Physics'],
-                        ['化学', 'Chemistry'],
-                        ['政治', 'Politics'],
-                        ['历史', 'History']
-                    ],
-
-                }
-            },
-            mounted() {
-                // 输出用户信息
-                console.log(`当前用户: ${this.User.Name}\nToken: ${this.User.Token}`);
-                // 未完成
-                getJson(getExamUrl(1, 50, false, this.User.Token)).then((json) => {
-                    addTask(json, 'Chinese', 'task_list_done');
-                });
-                // 已完成
-                getJson(getExamUrl(1, 50, true, this.User.Token)).then((json) => {
-                    addTask(json, "Chinese_done", 'task_list_done');
-                });
-                // 我的收藏
-                getJson(`https://zyzx-s.zy.com/api/1/aipt/get_like_tasks?pageNo=1&pageSize=50&access_token=${this.User.Token}`).then((json) => {
-                    addTask(json, "Like_Chinese", 'task_list_done');
-                });
-                // console.log(this.subject)
-                // for (let item in this.subject) { console.log(this.subject[item][0]) };
-
-
-            }
-        }
-
-        Vue.createApp(app).mount('#MainPage')
-    </script>
+    
 </head>
 
 <body>
@@ -440,6 +396,54 @@
             <li class="page-item"><a class="page-link" href="#">尾页</a></li>
         </ul>
     </div>
+    <!-- type="module" -->
+    <script>
+        // import * as Vue from 'vue'
+
+        const app = {
+            data() {
+                return {
+                    // 定义用户信息
+                    User: {
+                        Name: 'Amiya',
+                        Token: '6ff9dd8c-dcbf-414f-8a02-6c693de20b7e'
+                    },
+                    subject: [
+                        ['语文(暂时全放在了语文)', 'Chinese'],
+                        ['数学', 'Math'],
+                        ['英语', 'English'],
+                        ['物理', 'Physics'],
+                        ['化学', 'Chemistry'],
+                        ['政治', 'Politics'],
+                        ['历史', 'History']
+                    ],
+
+                }
+            },
+            mounted() {
+                // 输出用户信息
+                console.log(`当前用户: ${this.User.Name}\nToken: ${this.User.Token}`);
+                // 未完成
+                getJson(getExamUrl(1, 50, false, this.User.Token)).then((json) => {
+                    addTask(json, 'Chinese', 'task_list_done');
+                });
+                // 已完成
+                getJson(getExamUrl(1, 50, true, this.User.Token)).then((json) => {
+                    addTask(json, "Chinese_done", 'task_list_done');
+                });
+                // 我的收藏
+                getJson(`https://zyzx-s.zy.com/api/1/aipt/get_like_tasks?pageNo=1&pageSize=50&access_token=${this.User.Token}`).then((json) => {
+                    addTask(json, "Like_Chinese", 'task_list_done');
+                });
+                // console.log(this.subject)
+                // for (let item in this.subject) { console.log(this.subject[item][0]) };
+
+
+            }
+        }
+
+        Vue.createApp(app).mount('#MainPage')
+    </script>
 </body>
 
 </html>
