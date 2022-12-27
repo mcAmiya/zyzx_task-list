@@ -39,11 +39,23 @@ return data;
 function addTask(json,id='Chinese', a){
     for (var i = 0; i < json.data.list.length; i++) {
         var point = '&nbsp;&bull;&nbsp;'
-        var str = json.data.list[i]['subject_name'] + '<br>' + point + json.data.list[i].task_name + '<br>&nbsp;&bull;&nbsp;发布日期: ' + json.data.list[i]['publish_time'] + '<br>&nbsp;&bull;&nbsp;截止日期: ' + json.data.list[i].deadline + "<br><br>";
+        var str = `<span class="badge bg-warning">${json.data.list[i]['subject_name']}</span> ` +
+         '</br>' +point+
+          json.data.list[i].task_name +
+           '<br>&nbsp;&bull;&nbsp;发布日期: ' +
+            json.data.list[i]['publish_time'] +
+             '<br>&nbsp;&bull;&nbsp;截止日期: ' +
+              json.data.list[i].deadline + "<br>"+
+              // '&nbsp;&bull;&nbsp;教师备注: ' +
+              // json.data.list[i].remarks + "<br>"+
+              `<span class="badge bg-secondary">${json.data.list[i]['res_type_name']}</span> `+
+              `<span class="badge bg-secondary">${json.data.list[i]['exercise_type_name']}</span>`+
+              "<br>";
         var exam_url = json.data.list[i]['resource_list'][0]['resource_preview_url'];
 
 
         var task = document.createElement("li");
+        // mb-3
         task.className = "list-group list-group-item list-group-item-action list-group-item-success";
         task.setAttribute('onclick', `location.href='${exam_url}'`);
         task.setAttribute('style', "cursor:pointer");

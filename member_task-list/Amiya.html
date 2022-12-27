@@ -57,7 +57,6 @@
         }
     </script> -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <!-- <script src="https://cdn.staticfile.org/vue/3.2.36/vue.global.min.js"></script> -->
 
     
 </head>
@@ -107,122 +106,26 @@
         <div class="tab-content">
             <!-- 未完成页面 -->
             <div id="undone" class="container tab-pane active">
-                <br />
+                <br>
                 <!-- 手风琴特效 -->
-                <div id="homework">
-                    <!-- 语文 -->
-                    <div class="card">
+                <div id="Undone_list">
+                    <!-- 学科 -->
+                    <div class="card" v-for="item in subject">
+                        <!-- 标题 -->
                         <div class="card-header">
-                            <a class="card-link" data-bs-toggle="collapse" href="#Chinese">
-                                语文(暂时全放在了语文)
+                            <a class="card-link" data-bs-toggle="collapse" :href="'#Undone_' + item[1]">
+                                {{ item[0] }}
                             </a>
                         </div>
-                        <!-- collapse show 手风琴默认打开 -->
-                        <div id="Chinese" class="collapse" data-bs-parent="#homework">
+                        <!-- 内容 -->
+                        <div :id="'Undone_' + item[1]" class="collapse" data-bs-parent="#Undone_list">
                             <div class="card-body">
-                                <!-- <a class="list-group-item list-group-item-action" -->
-                                <!-- href="https://unitest.zy.com/pages/login/examLogin?examCode=jw8m04i31g&amp;memberId=415130E4-45ED-4034-84E8-7C701AC2239A">【英语】周末训练（2021越秀区期末）<br>&nbsp;•&nbsp;发布日期: -->
-                                <!-- 2022-12-24 10:05:11<br>&nbsp;•&nbsp;截止日期: 2022-12-26 00:00:00</a><br> -->
                                 <!-- 这个div是用来使第一份圆角生效的 -->
                                 <div></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 数学 -->
-                    <div class="card">
-                        <div class="card-header">
-                            <a class="card-link" data-bs-toggle="collapse" href="#Math">
-                                数学(后期颜色会随截止时间变化)
-                            </a>
-                        </div>
-                        <div id="Math" class="collapse" data-bs-parent="#homework">
-                            <div class="card-body">
                                 <!-- <a class="list-group-item list-group-item-action"
                                     href="https://unitest.zy.com/pages/login/examLogin?examCode=jw8m04i31g&amp;memberId=415130E4-45ED-4034-84E8-7C701AC2239A">【英语】周末训练（2021越秀区期末）<br>&nbsp;•&nbsp;发布日期:
-                                    2022-12-24 10:05:11<br>&nbsp;•&nbsp;截止日期: 2022-12-26 00:00:00<br><br></a> -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 英语 -->
-                    <div class="card">
-                        <div class="card-header">
-                            <a class="card-link" data-bs-toggle="collapse" href="#English">
-                                英语(还是只有最近发布的50条内容)
-                            </a>
-                        </div>
-                        <div id="English" class="collapse" data-bs-parent="#homework">
-                            <div class="card-body">
-                                <!-- <a class="list-group-item list-group-item-action"
-                                    href="https://unitest.zy.com/pages/login/examLogin?examCode=jw8m04i31g&amp;memberId=415130E4-45ED-4034-84E8-7C701AC2239A">【英语】周末训练（2021越秀区期末）<br>&nbsp;•&nbsp;发布日期:
-                                    2022-12-24 10:05:11<br>&nbsp;•&nbsp;截止日期: 2022-12-26 00:00:00</a><br> -->
-                                <!-- 这个div是用来使第一份圆角生效的 -->
-                                <div></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 物理 -->
-                    <div class="card">
-                        <div class="card-header">
-                            <a class="card-link" data-bs-toggle="collapse" href="#Physics">
-                                物理
-                            </a>
-                        </div>
-                        <div id="Physics" class="collapse" data-bs-parent="#homework">
-                            <div class="card-body">
-                                <!-- <a class="list-group-item list-group-item-action"
-                                    href="https://unitest.zy.com/pages/login/examLogin?examCode=jw8m04i31g&amp;memberId=415130E4-45ED-4034-84E8-7C701AC2239A">【英语】周末训练（2021越秀区期末）<br>&nbsp;•&nbsp;发布日期:
-                                    2022-12-24 10:05:11<br>&nbsp;•&nbsp;截止日期: 2022-12-26 00:00:00</a><br> -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 化学 -->
-                    <div class="card">
-                        <div class="card-header">
-                            <a class="card-link" data-bs-toggle="collapse" href="#Chemistry">
-                                化学
-                            </a>
-                        </div>
-                        <div id="Chemistry" class="collapse" data-bs-parent="#homework">
-                            <div class="card-body">
-                                <!-- <a class="list-group-item list-group-item-action"
-                                    href="https://unitest.zy.com/pages/login/examLogin?examCode=jw8m04i31g&amp;memberId=415130E4-45ED-4034-84E8-7C701AC2239A">【英语】周末训练（2021越秀区期末）<br>&nbsp;•&nbsp;发布日期:
-                                    2022-12-24 10:05:11<br>&nbsp;•&nbsp;截止日期: 2022-12-26 00:00:00</a><br> -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 政治 -->
-                    <div class="card">
-                        <div class="card-header">
-                            <a class="card-link" data-bs-toggle="collapse" href="#Politics">
-                                政治
-                            </a>
-                        </div>
-                        <div id="Politics" class="collapse" data-bs-parent="#homework">
-                            <div class="card-body">
-                                <!-- <a class="list-group-item list-group-item-action"
-                                    href="https://unitest.zy.com/pages/login/examLogin?examCode=jw8m04i31g&amp;memberId=415130E4-45ED-4034-84E8-7C701AC2239A">【英语】周末训练（2021越秀区期末）<br>&nbsp;•&nbsp;发布日期:
-                                    2022-12-24 10:05:11<br>&nbsp;•&nbsp;截止日期: 2022-12-26 00:00:00</a><br> -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 历史 -->
-                    <div class="card">
-                        <div class="card-header">
-                            <a class="card-link" data-bs-toggle="collapse" href="#History">
-                                历史
-                            </a>
-                        </div>
-                        <div id="history" class="collapse" data-bs-parent="#homework">
-                            <div class="card-body">
-                                <!-- <a class="list-group-item list-group-item-action"
-                                    href="https://unitest.zy.com/pages/login/examLogin?examCode=jw8m04i31g&amp;memberId=415130E4-45ED-4034-84E8-7C701AC2239A">【英语】周末训练（2021越秀区期末）<br>&nbsp;•&nbsp;发布日期:
-                                    2022-12-24 10:05:11<br>&nbsp;•&nbsp;截止日期: 2022-12-26 00:00:00</a><br> -->
+                                    2022-12-24 10:05:11<br>&nbsp;•&nbsp;截止日期: 2022-12-26 00:00:00</a> -->
+                                <!-- <br> -->
                             </div>
                         </div>
                     </div>
@@ -235,120 +138,24 @@
                 <!-- <h3>正在制作中……</h3>
                 <p>别急 该有的都会有的</p> -->
                 <!-- 手风琴特效 -->
-                <div id="homework">
-                    <!-- 语文 -->
-                    <div class="card">
+                <div id="Done_list">
+                    <!-- 学科 -->
+                    <div class="card" v-for="item in subject">
+                        <!-- 标题 -->
                         <div class="card-header">
-                            <a class="card-link" data-bs-toggle="collapse" href="#Chinese_done">
-                                语文(暂时全放在了语文)
+                            <a class="card-link" data-bs-toggle="collapse" :href="'#Done_' + item[1]">
+                                {{ item[0] }}
                             </a>
                         </div>
-                        <!-- collapse show 手风琴默认打开 -->
-                        <div id="Chinese_done" class="collapse" data-bs-parent="#homework">
+                        <!-- 内容 -->
+                        <div :id="'Done_' + item[1]" class="collapse" data-bs-parent="#Done_list">
                             <div class="card-body">
-                                <!-- <a class="list-group-item list-group-item-action" -->
-                                <!-- href="https://unitest.zy.com/pages/login/examLogin?examCode=jw8m04i31g&amp;memberId=415130E4-45ED-4034-84E8-7C701AC2239A">【英语】周末训练（2021越秀区期末）<br>&nbsp;•&nbsp;发布日期: -->
-                                <!-- 2022-12-24 10:05:11<br>&nbsp;•&nbsp;截止日期: 2022-12-26 00:00:00</a><br> -->
                                 <!-- 这个div是用来使第一份圆角生效的 -->
                                 <div></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 数学 -->
-                    <div class="card">
-                        <div class="card-header">
-                            <a class="card-link" data-bs-toggle="collapse" href="#Math">
-                                数学(后期颜色会随截止时间变化)
-                            </a>
-                        </div>
-                        <div id="Math" class="collapse" data-bs-parent="#homework">
-                            <div class="card-body">
                                 <!-- <a class="list-group-item list-group-item-action"
                                     href="https://unitest.zy.com/pages/login/examLogin?examCode=jw8m04i31g&amp;memberId=415130E4-45ED-4034-84E8-7C701AC2239A">【英语】周末训练（2021越秀区期末）<br>&nbsp;•&nbsp;发布日期:
-                                    2022-12-24 10:05:11<br>&nbsp;•&nbsp;截止日期: 2022-12-26 00:00:00<br><br></a> -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 英语 -->
-                    <div class="card">
-                        <div class="card-header">
-                            <a class="card-link" data-bs-toggle="collapse" href="#English">
-                                英语(还是只有最近发布的50条内容)
-                            </a>
-                        </div>
-                        <div id="English" class="collapse" data-bs-parent="#homework">
-                            <div class="card-body">
-                                <!-- <a class="list-group-item list-group-item-action"
-                                    href="https://unitest.zy.com/pages/login/examLogin?examCode=jw8m04i31g&amp;memberId=415130E4-45ED-4034-84E8-7C701AC2239A">【英语】周末训练（2021越秀区期末）<br>&nbsp;•&nbsp;发布日期:
-                                    2022-12-24 10:05:11<br>&nbsp;•&nbsp;截止日期: 2022-12-26 00:00:00</a><br> -->
-                                <!-- 这个div是用来使第一份圆角生效的 -->
-                                <div></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 物理 -->
-                    <div class="card">
-                        <div class="card-header">
-                            <a class="card-link" data-bs-toggle="collapse" href="#Physics">
-                                物理
-                            </a>
-                        </div>
-                        <div id="Physics" class="collapse" data-bs-parent="#homework">
-                            <div class="card-body">
-                                <!-- <a class="list-group-item list-group-item-action"
-                                    href="https://unitest.zy.com/pages/login/examLogin?examCode=jw8m04i31g&amp;memberId=415130E4-45ED-4034-84E8-7C701AC2239A">【英语】周末训练（2021越秀区期末）<br>&nbsp;•&nbsp;发布日期:
-                                    2022-12-24 10:05:11<br>&nbsp;•&nbsp;截止日期: 2022-12-26 00:00:00</a><br> -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 化学 -->
-                    <div class="card">
-                        <div class="card-header">
-                            <a class="card-link" data-bs-toggle="collapse" href="#Chemistry">
-                                化学
-                            </a>
-                        </div>
-                        <div id="Chemistry" class="collapse" data-bs-parent="#homework">
-                            <div class="card-body">
-                                <!-- <a class="list-group-item list-group-item-action"
-                                    href="https://unitest.zy.com/pages/login/examLogin?examCode=jw8m04i31g&amp;memberId=415130E4-45ED-4034-84E8-7C701AC2239A">【英语】周末训练（2021越秀区期末）<br>&nbsp;•&nbsp;发布日期:
-                                    2022-12-24 10:05:11<br>&nbsp;•&nbsp;截止日期: 2022-12-26 00:00:00</a><br> -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 政治 -->
-                    <div class="card">
-                        <div class="card-header">
-                            <a class="card-link" data-bs-toggle="collapse" href="#Politics">
-                                政治
-                            </a>
-                        </div>
-                        <div id="Politics" class="collapse" data-bs-parent="#homework">
-                            <div class="card-body">
-                                <!-- <a class="list-group-item list-group-item-action"
-                                    href="https://unitest.zy.com/pages/login/examLogin?examCode=jw8m04i31g&amp;memberId=415130E4-45ED-4034-84E8-7C701AC2239A">【英语】周末训练（2021越秀区期末）<br>&nbsp;•&nbsp;发布日期:
-                                    2022-12-24 10:05:11<br>&nbsp;•&nbsp;截止日期: 2022-12-26 00:00:00</a><br> -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 历史 -->
-                    <div class="card">
-                        <div class="card-header">
-                            <a class="card-link" data-bs-toggle="collapse" href="#History">
-                                历史
-                            </a>
-                        </div>
-                        <div id="history" class="collapse" data-bs-parent="#homework">
-                            <div class="card-body">
-                                <!-- <a class="list-group-item list-group-item-action"
-                                    href="https://unitest.zy.com/pages/login/examLogin?examCode=jw8m04i31g&amp;memberId=415130E4-45ED-4034-84E8-7C701AC2239A">【英语】周末训练（2021越秀区期末）<br>&nbsp;•&nbsp;发布日期:
-                                    2022-12-24 10:05:11<br>&nbsp;•&nbsp;截止日期: 2022-12-26 00:00:00</a><br> -->
+                                    2022-12-24 10:05:11<br>&nbsp;•&nbsp;截止日期: 2022-12-26 00:00:00</a> -->
+                                <!-- <br> -->
                             </div>
                         </div>
                     </div>
@@ -410,8 +217,8 @@
                     },
                     subject: [
                         ['语文(暂时全放在了语文)', 'Chinese'],
-                        ['数学', 'Math'],
-                        ['英语', 'English'],
+                        ['数学(后期颜色会随截止时间变化)', 'Math'],
+                        ['英语(还是只有最近发布的50条内容)', 'English'],
                         ['物理', 'Physics'],
                         ['化学', 'Chemistry'],
                         ['政治', 'Politics'],
@@ -425,11 +232,11 @@
                 console.log(`当前用户: ${this.User.Name}\nToken: ${this.User.Token}`);
                 // 未完成
                 getJson(getExamUrl(1, 50, false, this.User.Token)).then((json) => {
-                    addTask(json, 'Chinese', 'task_list_done');
+                    addTask(json, 'Undone_Chinese', 'task_list_done');
                 });
                 // 已完成
                 getJson(getExamUrl(1, 50, true, this.User.Token)).then((json) => {
-                    addTask(json, "Chinese_done", 'task_list_done');
+                    addTask(json, "Done_Chinese", 'task_list_done');
                 });
                 // 我的收藏
                 getJson(`https://zyzx-s.zy.com/api/1/aipt/get_like_tasks?pageNo=1&pageSize=50&access_token=${this.User.Token}`).then((json) => {
