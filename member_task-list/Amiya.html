@@ -246,6 +246,13 @@
                 // for (let item in this.subject) { console.log(this.subject[item][0]) };
 
 
+            },
+            method:{
+                likeTask(id, like=true){
+                    console.log(1)
+                    // likeTask(this.User.Token, 'o1gl93uidkcG6i7qpkkN994MaW561w22', true)
+                    likeTask(this.User.Token, id, like)
+                }
             }
         }
 

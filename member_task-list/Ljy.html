@@ -1,0 +1,263 @@
+<!-- 
+    Bootstrap 4 升级至 Bootstrap 5
+    badge badge-secondary 改为 badge bg-secondary
+    data-toggle 改为 data-bs-toggle
+    data-parent 改为 data-bs-parent
+    card-link 不再默认去除a标签的下划线
+    
+    2022/12/25：
+    Bootstrap 4 升级至 Bootstrap 5
+    优化了移动端的操作体验和iphone SE机型的布局问题 初步能够使用已完成和未完成 
+    但代码就是一坨屎 总有一天会重构的 现在能用就行 毕竟现在是2022/12/26 02:15 太困了 明天还得上课 差不多 就这样
+    --Amiya
+
+    2022/12/26:
+    封装了getJson和添加任务到作业列表 见main.js
+    使用了vue.js 3 优化了繁琐页面 详情见我的收藏模块 后续将同步其他模块 2022/12/27 03:14 太困了 明天还得上课 差不多 就这样
+    --Amiya
+ -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>你的作业完成了吗？</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="icon" href="../favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap 4 -->
+    <!-- <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css"> -->
+    <!-- <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script> -->
+    <!-- <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+
+    <!-- Bootstrap 5 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" />
+    <script src="https://cdn.staticfile.org/popper.js/2.9.3/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
+
+    <style>
+        /* bootstrap 4 和 5 还是有点差别的 5的card-link非常丑 所以自己动手丰衣足食 */
+        .card-link {
+            text-decoration: none;
+            display: block;
+        }
+    </style>
+    <!--  -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- 主要函数 -->
+    <script src="./js/main.js"></script>
+    <!-- Vue.js 3 -->
+    <!-- <script type="importmap">
+        {
+          "imports": {
+            "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+          }
+        }
+    </script> -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    
+</head>
+
+<body>
+    <div id='MainPage' class="container mt-3">
+        <h2>{{User.Name}}の任务列表 <span class="badge bg-secondary">内测</span></h2>
+        <!-- <br> -->
+
+        <!-- 返回主页 -->
+        <div class="row">
+            <!-- <br> -->
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="tab" href="#undone">未完成</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#done">已完成</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#like">我的收藏</a>
+                </li>
+
+                <!-- 科目选择 下拉框 -->
+                <!-- <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">全部学科</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" data-bs-toggle="tab" href="#">语文</a>
+                        <a class="dropdown-item" data-bs-toggle="tab" href="#">数学</a>
+                        <a class="dropdown-item" data-bs-toggle="tab" href="#">英语</a>
+                        <a class="dropdown-item" data-bs-toggle="tab" href="#">物理</a>
+                        <a class="dropdown-item" data-bs-toggle="tab" href="#">化学</a>
+                        <a class="dropdown-item" data-bs-toggle="tab" href="#">政治</a>
+                        <a class="dropdown-item" data-bs-toggle="tab" href="#">历史</a>
+                    </div>
+                </li> -->
+                <button type="button" class="btn btn-outline-primary" style="float: right"
+                    onclick='location.href=("../index.html")'>
+                    返回主页
+                </button>
+            </ul>
+        </div>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <!-- 未完成页面 -->
+            <div id="undone" class="container tab-pane active">
+                <br>
+                <!-- 手风琴特效 -->
+                <div id="Undone_list">
+                    <!-- 学科 -->
+                    <div class="card" v-for="item in subject">
+                        <!-- 标题 -->
+                        <div class="card-header">
+                            <a class="card-link" data-bs-toggle="collapse" :href="'#Undone_' + item[1]">
+                                {{ item[0] }}
+                            </a>
+                        </div>
+                        <!-- 内容 -->
+                        <div :id="'Undone_' + item[1]" class="collapse" data-bs-parent="#Undone_list">
+                            <div class="card-body">
+                                <!-- 这个div是用来使第一份圆角生效的 -->
+                                <div></div>
+                                <!-- <a class="list-group-item list-group-item-action"
+                                    href="https://unitest.zy.com/pages/login/examLogin?examCode=jw8m04i31g&amp;memberId=415130E4-45ED-4034-84E8-7C701AC2239A">【英语】周末训练（2021越秀区期末）<br>&nbsp;•&nbsp;发布日期:
+                                    2022-12-24 10:05:11<br>&nbsp;•&nbsp;截止日期: 2022-12-26 00:00:00</a> -->
+                                <!-- <br> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 已完成页面 -->
+            <div id="done" class="container tab-pane fade">
+                <br />
+                <!-- <h3>正在制作中……</h3>
+                <p>别急 该有的都会有的</p> -->
+                <!-- 手风琴特效 -->
+                <div id="Done_list">
+                    <!-- 学科 -->
+                    <div class="card" v-for="item in subject">
+                        <!-- 标题 -->
+                        <div class="card-header">
+                            <a class="card-link" data-bs-toggle="collapse" :href="'#Done_' + item[1]">
+                                {{ item[0] }}
+                            </a>
+                        </div>
+                        <!-- 内容 -->
+                        <div :id="'Done_' + item[1]" class="collapse" data-bs-parent="#Done_list">
+                            <div class="card-body">
+                                <!-- 这个div是用来使第一份圆角生效的 -->
+                                <div></div>
+                                <!-- <a class="list-group-item list-group-item-action"
+                                    href="https://unitest.zy.com/pages/login/examLogin?examCode=jw8m04i31g&amp;memberId=415130E4-45ED-4034-84E8-7C701AC2239A">【英语】周末训练（2021越秀区期末）<br>&nbsp;•&nbsp;发布日期:
+                                    2022-12-24 10:05:11<br>&nbsp;•&nbsp;截止日期: 2022-12-26 00:00:00</a> -->
+                                <!-- <br> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 我的收藏页面 -->
+            <div id="like" class="container tab-pane fade">
+                <br>
+                <!-- <h3>正在制作中……</h3>
+                <p>别急 该有的都会有的</p> -->
+                <!-- 手风琴特效 -->
+                <div id="Like_list">
+                    <!-- 学科 -->
+                    <div class="card" v-for="item in subject">
+                        <!-- 标题 -->
+                        <div class="card-header">
+                            <a class="card-link" data-bs-toggle="collapse" :href="'#Like_' + item[1]">
+                                {{ item[0] }}
+                            </a>
+                        </div>
+                        <!-- 内容 -->
+                        <div :id="'Like_' + item[1]" class="collapse" data-bs-parent="#Like_list">
+                            <div class="card-body">
+                                <!-- 这个div是用来使第一份圆角生效的 -->
+                                <div></div>
+                                <!-- <a class="list-group-item list-group-item-action"
+                                    href="https://unitest.zy.com/pages/login/examLogin?examCode=jw8m04i31g&amp;memberId=415130E4-45ED-4034-84E8-7C701AC2239A">【英语】周末训练（2021越秀区期末）<br>&nbsp;•&nbsp;发布日期:
+                                    2022-12-24 10:05:11<br>&nbsp;•&nbsp;截止日期: 2022-12-26 00:00:00</a> -->
+                                <!-- <br> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 页数选择 - 未完成 -->
+        <ul class="pagination justify-content-center" style="margin: 20px 0">
+            <li class="page-item disabled">
+                <a class="page-link" href="#">首页</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">尾页</a></li>
+        </ul>
+    </div>
+    <!-- type="module" -->
+    <script>
+        // import * as Vue from 'vue'
+
+        const app = {
+            data() {
+                return {
+                    // 定义用户信息
+                    User: {
+                        Name: 'Ljy',
+                        Token: 'c47436b5-548e-4bf4-b992-2ac3d0bf42dd'
+                    },
+                    subject: [
+                        ['语文(暂时全放在了语文)', 'Chinese'],
+                        ['数学(后期颜色会随截止时间变化)', 'Math'],
+                        ['英语(还是只有最近发布的50条内容)', 'English'],
+                        ['物理', 'Physics'],
+                        ['化学', 'Chemistry'],
+                        ['政治', 'Politics'],
+                        ['历史', 'History']
+                    ],
+
+                }
+            },
+            mounted() {
+                // 输出用户信息
+                console.log(`当前用户: ${this.User.Name}\nToken: ${this.User.Token}`);
+                // 未完成
+                getJson(getExamUrl(1, 50, false, this.User.Token)).then((json) => {
+                    addTask(json, 'Undone_Chinese', 'task_list_done');
+                });
+                // 已完成
+                getJson(getExamUrl(1, 50, true, this.User.Token)).then((json) => {
+                    addTask(json, "Done_Chinese", 'task_list_done');
+                });
+                // 我的收藏
+                getJson(`https://zyzx-s.zy.com/api/1/aipt/get_like_tasks?pageNo=1&pageSize=50&access_token=${this.User.Token}`).then((json) => {
+                    addTask(json, "Like_Chinese", 'task_list_done');
+                });
+                // console.log(this.subject)
+                // for (let item in this.subject) { console.log(this.subject[item][0]) };
+
+
+            },
+            method:{
+                likeTask(id, like=true){
+                    console.log(1)
+                    // likeTask(this.User.Token, 'o1gl93uidkcG6i7qpkkN994MaW561w22', true)
+                    likeTask(this.User.Token, id, like)
+                }
+            }
+        }
+
+        Vue.createApp(app).mount('#MainPage')
+    </script>
+</body>
+
+</html>
