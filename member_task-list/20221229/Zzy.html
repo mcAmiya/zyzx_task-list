@@ -15,16 +15,6 @@
     封装了getJson和添加任务到作业列表 见main.js
     使用了vue.js 3 优化了繁琐页面 详情见我的收藏模块 后续将同步其他模块 2022/12/27 03:14 太困了 明天还得上课 差不多 就这样
     --Amiya
-
-    2022/12/29:
-    添加了任务的徽章 学科改为徽章显示
-    --Amiya
-
-    2022/12/29:
-    新增成员 Ljy
-    添加is_new 不是资料时会隐藏 改了发布时间与截止时间的排布 修复未完成页面切换无动画 任务分类
-    写了likeTask和FinishTask函数供以后调用 2022/12/29 01:41
-    --Amiya
  -->
 
 <!DOCTYPE html>
@@ -67,13 +57,11 @@
     <div id='MainPage' class="container mt-3">
         <h2>{{User.Name}}の任务列表 <span class="badge bg-secondary">内测</span></h2>
         <!-- <br> -->
+
+        <!-- 返回主页 -->
         <div class="row">
             <!-- <br> -->
-            <!-- 返回主页 -->
-            <button type="button" class="btn btn-outline-primary mb-1" style="float: right"
-                onclick='location.href=("../index.html")'>
-                返回主页
-            </button>
+
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">
@@ -105,6 +93,10 @@
                         <a class="dropdown-item" data-bs-toggle="tab" href="#">历史</a>
                     </div>
                 </li> -->
+                <button type="button" class="btn btn-outline-primary" style="float: right"
+                    onclick='location.href=("../index.html")'>
+                    返回主页
+                </button>
             </ul>
         </div>
 
@@ -218,13 +210,13 @@
                 return {
                     // 定义用户信息
                     User: {
-                        Name: 'Ljy',
-                        Token: 'c47436b5-548e-4bf4-b992-2ac3d0bf42dd'
+                        Name: 'Zzy',
+                        Token: '7fdaa624-4cd4-4391-bc3f-e471d0dc0bbe'
                     },
                     subject: [
-                        ['语文(后期颜色会随截止时间变化)', 'Chinese'],
-                        ['数学(还是只有最近发布的50条内容)', 'Math'],
-                        ['英语', 'English'],
+                        ['语文(暂时全放在了语文)', 'Chinese'],
+                        ['数学(后期颜色会随截止时间变化)', 'Math'],
+                        ['英语(还是只有最近发布的50条内容)', 'English'],
                         ['物理', 'Physics'],
                         ['化学', 'Chemistry'],
                         ['政治', 'Politics'],

@@ -39,13 +39,17 @@
             display: block;
         }
     </style>
+    
+    <!-- MUI -->
+    <link rel="stylesheet" href="//dev.dcloud.net.cn/mui/dist/css/mui.min.css?v=2017-02-15 11:53:40 +0800">
+    <link rel="stylesheet" href="//dev.dcloud.net.cn/mui/assets/css/docs.css?v=2017-02-15 11:53:40 +0800">
+    <script src="//dev.dcloud.net.cn/mui/dist/js/mui.min.js?v=2017-02-15 11:53:40 +0800"></script>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="./js/main.js"></script>
 </head>
-
-<body>
-    <div class="container mt-3">
+    
+<div class="container mt-3">
         <h2>UserNameの任务列表 <span class="badge bg-secondary">开发中</span></h2>
         <!-- <br> -->
 
@@ -56,7 +60,9 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" data-bs-toggle="tab" href="#undone">未完成</a>
+<body>
+<body>
+                    <a class="nav-link active" data-bs-toggle="tab" href="#undone">未完成<span class="mui-badge mui-badge-danger">1</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="tab" href="#done">已完成</a>

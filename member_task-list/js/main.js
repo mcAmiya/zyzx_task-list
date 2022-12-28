@@ -19,7 +19,7 @@ pageNo=${pageNo}\
 async function getJson(url) {
   let data = await axios
     .get(url)
-    .then(function (result) {
+    .then((result) => {
       var json_str = JSON.stringify(result.data);
 
       if (json_str) {
@@ -34,23 +34,32 @@ async function getJson(url) {
   return data;
 }
 
-function addTask(json, id = "Chinese", a) {
+function addTask(json, status="Undone", a) {
   for (var i = 0; i < json.data.list.length; i++) {
     var point = "&nbsp;&bull;&nbsp;";
+    var is_new = (json.data.list[i]["is_new"]) ? `<span class="badge bg-danger" style="float: right">新</span>` : '';
+    var dead_line = (json.data.list[i].deadline != null) ? json.data.list[i].deadline : '无截至时间';
+    var tag_homework = (json.data.list[i]["exercise_type_name"] != null) ? `<span class="badge bg-secondary">${json.data.list[i]["exercise_type_name"]}</span>` : '';
+    
     var str =
       `<span class="badge bg-warning">${json.data.list[i]["subject_name"]}</span> ` +
+      is_new +
       "</br>" +
       point +
-      json.data.list[i].task_name +
-      "<br>&nbsp;&bull;&nbsp;发布日期: " +
+      `<span>${json.data.list[i].task_name}</span>` +
+
+      "<br>"+
+      point +
       json.data.list[i]["publish_time"] +
-      "<br>&nbsp;&bull;&nbsp;截止日期: " +
-      json.data.list[i].deadline +
+      " -> " +
+      dead_line +
+
       "<br>" +
       // '&nbsp;&bull;&nbsp;教师备注: ' +
       // json.data.list[i].remarks + "<br>"+
       `<span class="badge bg-secondary">${json.data.list[i]["res_type_name"]}</span> ` +
-      `<span class="badge bg-secondary">${json.data.list[i]["exercise_type_name"]}</span> ` +
+      // `<span class="badge bg-secondary">${json.data.list[i]["exercise_type_name"]}</span> ` +
+      tag_homework +
       // `<button type="button" class="btn btn-primary btn-sm" @click="likeTask('${json.data.list[i]["task_id"]}')">收藏</button>`
       "<br>";
     var exam_url =
@@ -64,6 +73,18 @@ function addTask(json, id = "Chinese", a) {
     task.setAttribute("style", "cursor:pointer");
     // task.href = exam_url;
     task.innerHTML = str;
+    
+    // 分类投放
+    var id = json.data.list[i]["subject_name"]
+    id = id.replace('语文', status+'_Chinese');
+    id = id.replace('数学', status+'_Math');
+    id = id.replace('英语', status+'_English');
+    id = id.replace('物理', status+'_Physics');
+    id = id.replace('化学', status+'_Chemistry');
+    id = id.replace('政治', status+'_Politics');
+    id = id.replace('历史', status+'_History');
+    // console.log(id)
+    
     var div = document.getElementById(id);
     //         console.log(json.data.list[i]['subject_name']);
 

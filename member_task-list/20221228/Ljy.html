@@ -15,16 +15,6 @@
     封装了getJson和添加任务到作业列表 见main.js
     使用了vue.js 3 优化了繁琐页面 详情见我的收藏模块 后续将同步其他模块 2022/12/27 03:14 太困了 明天还得上课 差不多 就这样
     --Amiya
-
-    2022/12/29:
-    添加了任务的徽章 学科改为徽章显示
-    --Amiya
-
-    2022/12/29:
-    新增成员 Ljy
-    添加is_new 不是资料时会隐藏 改了发布时间与截止时间的排布 修复未完成页面切换无动画 任务分类
-    写了likeTask和FinishTask函数供以后调用 2022/12/29 01:41
-    --Amiya
  -->
 
 <!DOCTYPE html>
@@ -36,15 +26,16 @@
     <link rel="icon" href="../favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <!-- Bootstrap 4 -->
+    <!-- <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css"> -->
+    <!-- <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script> -->
+    <!-- <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+
     <!-- Bootstrap 5 -->
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" />
     <script src="https://cdn.staticfile.org/popper.js/2.9.3/umd/popper.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
-
-    <!-- Mui -->
-    <link rel="stylesheet" href="//dev.dcloud.net.cn/mui/dist/css/mui.min.css?v=2017-02-15 11:53:40 +0800">
-    <link rel="stylesheet" href="//dev.dcloud.net.cn/mui/assets/css/docs.css?v=2017-02-15 11:53:40 +0800">
-    <script src="//dev.dcloud.net.cn/mui/dist/js/mui.min.js?v=2017-02-15 11:53:40 +0800"></script>
 
     <style>
         /* bootstrap 4 和 5 还是有点差别的 5的card-link非常丑 所以自己动手丰衣足食 */
@@ -58,38 +49,37 @@
     <!-- 主要函数 -->
     <script src="./js/main.js"></script>
     <!-- Vue.js 3 -->
+    <!-- <script type="importmap">
+        {
+          "imports": {
+            "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+          }
+        }
+    </script> -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
-
+    
 </head>
 
 <body>
     <div id='MainPage' class="container mt-3">
         <h2>{{User.Name}}の任务列表 <span class="badge bg-secondary">内测</span></h2>
         <!-- <br> -->
+
+        <!-- 返回主页 -->
         <div class="row">
             <!-- <br> -->
-            <!-- 返回主页 -->
-            <button type="button" class="btn btn-outline-primary mb-1" style="float: right"
-                onclick='location.href=("../index.html")'>
-                返回主页
-            </button>
+
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" data-bs-toggle="tab" href="#undone">未完成
-                        <span class="mui-badge mui-badge-danger">{{ undone_total }}</span>
-                    </a>
+                    <a class="nav-link active" data-bs-toggle="tab" href="#undone">未完成</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="tab" href="#done">已完成
-                        <span class="mui-badge mui-badge-danger">{{ done_total }}</span>
-                    </a>
+                    <a class="nav-link" data-bs-toggle="tab" href="#done">已完成</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="tab" href="#like">我的收藏
-                        <span class="mui-badge mui-badge-danger">{{ like_total }}</span>
-                    </a>
+                    <a class="nav-link" data-bs-toggle="tab" href="#like">我的收藏</a>
                 </li>
 
                 <!-- 科目选择 下拉框 -->
@@ -105,13 +95,17 @@
                         <a class="dropdown-item" data-bs-toggle="tab" href="#">历史</a>
                     </div>
                 </li> -->
+                <button type="button" class="btn btn-outline-primary" style="float: right"
+                    onclick='location.href=("../index.html")'>
+                    返回主页
+                </button>
             </ul>
         </div>
 
         <!-- Tab panes -->
         <div class="tab-content">
             <!-- 未完成页面 -->
-            <div id="undone" class="container tab-pane fade show active">
+            <div id="undone" class="container tab-pane show fade active">
                 <br>
                 <!-- 手风琴特效 -->
                 <div id="Undone_list">
@@ -222,17 +216,15 @@
                         Token: 'c47436b5-548e-4bf4-b992-2ac3d0bf42dd'
                     },
                     subject: [
-                        ['语文(后期颜色会随截止时间变化)', 'Chinese'],
-                        ['数学(还是只有最近发布的50条内容)', 'Math'],
-                        ['英语', 'English'],
+                        ['语文(暂时全放在了语文)', 'Chinese'],
+                        ['数学(后期颜色会随截止时间变化)', 'Math'],
+                        ['英语(还是只有最近发布的50条内容)', 'English'],
                         ['物理', 'Physics'],
                         ['化学', 'Chemistry'],
                         ['政治', 'Politics'],
                         ['历史', 'History']
                     ],
-                    undone_total: 0,
-                    done_total: 0,
-                    like_total: 0,
+
                 }
             },
             mounted() {
@@ -241,34 +233,26 @@
                 // 未完成
                 getJson(getExamUrl(1, 50, false, this.User.Token)).then((json) => {
                     addTask(json, 'Undone', 'task_list_done');
-                    this.undone_total = json.data.total
-                    // console.log(this.undone_total)
                 });
                 // 已完成
                 getJson(getExamUrl(1, 50, true, this.User.Token)).then((json) => {
                     addTask(json, "Done", 'task_list_done');
-                    this.done_total = json.data.total
                 });
                 // 我的收藏
                 getJson(`https://zyzx-s.zy.com/api/1/aipt/get_like_tasks?pageNo=1&pageSize=50&access_token=${this.User.Token}`).then((json) => {
                     addTask(json, "Like", 'task_list_done');
-                    this.like_total = json.data.total
                 });
                 // console.log(this.subject)
                 // for (let item in this.subject) { console.log(this.subject[item][0]) };
-                // getJson(`https://zyzx-s.zy.com/api/1/aipt/get_like_tasks?pageNo=1&pageSize=50&access_token=${this.User.Token}`).then((json) => {
-                //     this.examJson = json
-                //     console.log(this.examJson)
-                // });
 
 
             },
-            method: {
-                // likeTask(id, like=true){
-                //     console.log(1)
-                //     // likeTask(this.User.Token, 'o1gl93uidkcG6i7qpkkN994MaW561w22', true)
-                //     // likeTask(this.User.Token, id, like)
-                // }
+            method:{
+                likeTask(id, like=true){
+                    console.log(1)
+                    // likeTask(this.User.Token, 'o1gl93uidkcG6i7qpkkN994MaW561w22', true)
+                    likeTask(this.User.Token, id, like)
+                }
             }
         }
 
