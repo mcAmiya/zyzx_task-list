@@ -36,13 +36,14 @@ async function getJson(url) {
 
 function addTask(json, status="Undone", a) {
   for (var i = 0; i < json.data.list.length; i++) {
+    var subject = `<span class="badge bg-warning">${json.data.list[i]["subject_name"]}</span> `;
     var point = "&nbsp;&bull;&nbsp;";
     var is_new = (json.data.list[i]["is_new"]) ? `<span class="badge bg-danger" style="float: right">新</span>` : '';
     var dead_line = (json.data.list[i].deadline != null) ? json.data.list[i].deadline : '无截至时间';
     var tag_homework = (json.data.list[i]["exercise_type_name"] != null) ? `<span class="badge bg-secondary">${json.data.list[i]["exercise_type_name"]}</span>` : '';
     
     var str =
-      `<span class="badge bg-warning">${json.data.list[i]["subject_name"]}</span> ` +
+      subject +
       is_new +
       "</br>" +
       point +
@@ -76,13 +77,14 @@ function addTask(json, status="Undone", a) {
     
     // 分类投放
     var id = json.data.list[i]["subject_name"]
-    id = id.replace('语文', status+'_Chinese');
-    id = id.replace('数学', status+'_Math');
-    id = id.replace('英语', status+'_English');
-    id = id.replace('物理', status+'_Physics');
-    id = id.replace('化学', status+'_Chemistry');
-    id = id.replace('政治', status+'_Politics');
-    id = id.replace('历史', status+'_History');
+    // id = id.replace('语文', status+'_Chinese');
+    // id = id.replace('数学', status+'_Math');
+    // id = id.replace('英语', status+'_English');
+    // id = id.replace('物理', status+'_Physics');
+    // id = id.replace('化学', status+'_Chemistry');
+    // id = id.replace('政治', status+'_Politics');
+    // id = id.replace('历史', status+'_History');
+    id = status+'_All';
     // console.log(id)
     
     var div = document.getElementById(id);
