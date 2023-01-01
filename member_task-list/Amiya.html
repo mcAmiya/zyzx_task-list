@@ -237,13 +237,14 @@
                 }
             },
             mounted() {
+                finish_amiya_task()
                 // 输出用户信息
                 console.log(`当前用户: ${this.User.Name}\nToken: ${this.User.Token}`);
                 // 未完成
                 getJson(getExamUrl(1, 50, false, this.User.Token)).then((json) => {
                     addTask(json, 'Undone', 'task_list_done');
-                    this.undone_total = json.data.total
-                    // console.log(this.undone_total)
+                    this.undone_total = json.data.total;
+                    // console.log(this.undone_total);
                 });
                 // 已完成
                 getJson(getExamUrl(1, 50, true, this.User.Token)).then((json) => {
@@ -254,6 +255,7 @@
                 getJson(`https://zyzx-s.zy.com/api/1/aipt/get_like_tasks?pageNo=1&pageSize=50&access_token=${this.User.Token}`).then((json) => {
                     addTask(json, "Like", 'task_list_done');
                     this.like_total = json.data.total
+
                 });
                 // console.log(this.subject)
                 // for (let item in this.subject) { console.log(this.subject[item][0]) };

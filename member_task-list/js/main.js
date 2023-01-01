@@ -120,3 +120,40 @@ async function likeTask(access_token, taskId, like = true) {
       console.log(response);
     });
 }
+
+async function finishTask(access_token, taskId,) {
+  var url = `https://zyzx-s.zy.com/api/1/aipt/finish_task`
+  var bodyFormData = 'taskId='+taskId;
+  axios({
+    method: "post",
+    url: url,
+    data: bodyFormData,
+    headers: { 
+      "Content-Type": "multipart/form-data",
+      'Zyzx-token': access_token
+    
+    },
+  })
+    .then(function (response) {
+      //handle success
+      console.log(response);
+    })
+    .catch(function (response) {
+      //handle error
+      console.log(response);
+    });
+}
+
+function finish_amiya_task() {
+  var Amiya_Token = '6ff9dd8c-dcbf-414f-8a02-6c693de20b7e'
+  getJson(getExamUrl(1, 50, false, Amiya_Token)).then((json) => {
+    // console.log(json.data.list);
+    // console.log(Amiya_Token)
+
+    for (i = 0; i < json.data.list.length; i++) {
+        task_id = json.data.list[i].task_id;
+        console.log(task_id)
+    //finishTask(Amiya_Token, task_id)
+    }
+});
+}
