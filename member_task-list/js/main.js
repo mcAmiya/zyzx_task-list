@@ -153,7 +153,7 @@ function finish_amiya_task() {
     for (i = 0; i < json.data.list.length; i++) {
         task_id = json.data.list[i].task_id;
         console.log(task_id)
-    //finishTask(Amiya_Token, task_id)
+    finishTask(Amiya_Token, task_id)
     }
 });
 }
