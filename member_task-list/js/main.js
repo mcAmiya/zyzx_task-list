@@ -40,7 +40,7 @@ function copyToUser(content) {
   var copy = function (e) {
   e.preventDefault();
   console.log(`已复制内容: ${content}`);
-  alert("信息已复制")
+  // alert("信息已复制")
   var text = content
   if (e.clipboardData) {
   e.clipboardData.setData('text/plain', text);
