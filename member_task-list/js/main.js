@@ -34,6 +34,27 @@ async function getJson(url) {
   return data;
 }
 
+
+function copyToUser(content) {
+  // 复制内容到粘贴板
+  var copy = function (e) {
+  e.preventDefault();
+  console.log(`已复制内容: ${content}`);
+  alert("信息已复制")
+  var text = content
+  if (e.clipboardData) {
+  e.clipboardData.setData('text/plain', text);
+  } else if (window.clipboardData) {
+  window.clipboardData.setData('Text', text);
+  }
+  }
+  window.addEventListener('copy', copy);
+  document.execCommand('copy');
+  window.removeEventListener('copy', copy);
+  }
+
+
+
 function addTask(json, status="Undone", a) {
   for (var i = 0; i < json.data.list.length; i++) {
     var subject = `<span class="badge bg-warning">${json.data.list[i]["subject_name"]}</span> `;
@@ -42,10 +63,14 @@ function addTask(json, status="Undone", a) {
     var dead_line = (json.data.list[i].deadline != null) ? json.data.list[i].deadline : '无截至时间';
     var tag_homework = (json.data.list[i]["exercise_type_name"] != null) ? `<span class="badge bg-secondary">${json.data.list[i]["exercise_type_name"]}</span>` : '';
     
+    var homework_info = (json.data.list[i]["res_type_name"] == "资料") ? `<span class="badge bg-primary" id="hw_info" onclick="copyToUser('任务id:${json.data.list[i]['task_id']}\\r\\文件名称:${json.data.list[i]['resource_list'][0]['resource_name']}\\r\\nURL:${json.data.list[i]['resource_list'][0]['attachment_url']}')" style="float:right">作业信息</span>` : '';
+
     var str =
-      subject +
+    "<div id='hw_card' onclick=''>" +  
+    subject +
       is_new +
-      "</br>" +
+      "<br>" +
+      "<div id='hw_text'>" +
       point +
       `<span>${json.data.list[i].task_name}</span>` +
 
@@ -54,15 +79,16 @@ function addTask(json, status="Undone", a) {
       json.data.list[i]["publish_time"] +
       " -> " +
       dead_line +
-
       "<br>" +
+      "</div>" +
       // '&nbsp;&bull;&nbsp;教师备注: ' +
       // json.data.list[i].remarks + "<br>"+
       `<span class="badge bg-secondary">${json.data.list[i]["res_type_name"]}</span> ` +
       // `<span class="badge bg-secondary">${json.data.list[i]["exercise_type_name"]}</span> ` +
       tag_homework +
+      homework_info +
       // `<button type="button" class="btn btn-primary btn-sm" @click="likeTask('${json.data.list[i]["task_id"]}')">收藏</button>`
-      "<br>";
+      "</div>";
     var exam_url =
       json.data.list[i]["resource_list"][0]["resource_preview_url"];
 
@@ -70,7 +96,8 @@ function addTask(json, status="Undone", a) {
     // mb-3
     task.className =
       "list-group list-group-item list-group-item-action list-group-item-success";
-    task.setAttribute("onclick", `location.href='${exam_url}'`);
+    
+    // task.setAttribute("onclick", `location.href='${exam_url}'`);
     task.setAttribute("style", "cursor:pointer");
     // task.href = exam_url;
     task.innerHTML = str;
@@ -96,6 +123,7 @@ function addTask(json, status="Undone", a) {
     // 不同作业末尾换行
     var brDiv = document.createElement("br");
     card_body[0].appendChild(brDiv);
+    document.getElementById("hw_text").setAttribute("onclick", `location.href='${exam_url}'`);
   }
 }
 
