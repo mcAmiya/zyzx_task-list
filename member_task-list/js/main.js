@@ -171,17 +171,17 @@ async function finishTask(access_token, taskId,) {
       console.log(response);
     });
 }
+// 取消该功能
+// function finish_amiya_task() {
+//   var Amiya_Token = '6ff9dd8c-dcbf-414f-8a02-6c693de20b7e'
+//   getJson(getExamUrl(1, 50, false, Amiya_Token)).then((json) => {
+//     // console.log(json.data.list);
+//     // console.log(Amiya_Token)
 
-function finish_amiya_task() {
-  var Amiya_Token = '6ff9dd8c-dcbf-414f-8a02-6c693de20b7e'
-  getJson(getExamUrl(1, 50, false, Amiya_Token)).then((json) => {
-    // console.log(json.data.list);
-    // console.log(Amiya_Token)
-
-    for (i = 0; i < json.data.list.length; i++) {
-        task_id = json.data.list[i].task_id;
-        console.log(task_id)
-    finishTask(Amiya_Token, task_id)
-    }
-});
-}
+//     for (i = 0; i < json.data.list.length; i++) {
+//         task_id = json.data.list[i].task_id;
+//         console.log(task_id)
+//     finishTask(Amiya_Token, task_id)
+//     }
+// });
+// }
